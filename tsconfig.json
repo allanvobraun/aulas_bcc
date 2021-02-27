@@ -4,7 +4,7 @@
 
     "module": "commonjs",
     "esModuleInterop": true,
-    "target": "es6",
+    "target": "ES2017",
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "./build",
@@ -12,9 +12,22 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
+    "resolveJsonModule": true,
     "lib": [
-      "es5",
-      "es6"
+      "es7"
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "src/*": [
+        "./src/*"
+      ],
+      "root/*": [
+        "./*"
+      ]
+    },
+    "typeRoots": [
+      "src/types",
+      "node_modules/@types"
     ],
     /* Basic Options */
     // "incremental": true,                   /* Enable incremental compilation */

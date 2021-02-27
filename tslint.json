@@ -13,7 +13,9 @@
             "parameter",
             "property-declaration",
             "member-variable-declaration"
-        ]
+        ],
+        "semicolon": [true, "always"],
+        "no-namespace": false
     },
     "rulesDirectory": []
 }
