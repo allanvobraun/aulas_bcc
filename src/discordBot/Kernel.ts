@@ -3,19 +3,19 @@ import {Message} from "discord.js";
 import {Router} from "src/discordBot/Router";
 import {registerRoutes} from "src/discordBot/routes";
 
-export default class Index {
-    private static instance: Index;
+export default class Kernel {
+    private static instance: Kernel;
     commandPrefix: string = "??";
 
     private constructor() {
         registerRoutes();
     }
 
-    static getInstance(): Index {
-        if (!Index.instance) {
-            Index.instance = new Index();
+    static getInstance(): Kernel {
+        if (!Kernel.instance) {
+            Kernel.instance = new Kernel();
         }
-        return Index.instance;
+        return Kernel.instance;
     }
 
     resolveCommand(message: Message): Command {
