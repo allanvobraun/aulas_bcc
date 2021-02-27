@@ -28,14 +28,21 @@ export default class Kernel {
     }
 
     listen(): void {
-        client.on("message", async (message: Message) => {
-            if (message.author.bot) return;
-            if (!message.content.startsWith(this.commandPrefix)) return;
+        client.on("message", this.resolveClientMessages.bind(this));
+    }
+
+    private async resolveClientMessages(message: Message): Promise<void> {
+        if (message.author.bot) return;
+        if (!message.content.startsWith(this.commandPrefix)) return;
+
+        try {
             const command: Command = this.resolveCommand(message);
 
-            const controllerCallback: ControllerCallback = Router.routeFunctionRecord[command.type];
+            const controllerCallback: ControllerCallback = Router.getCallbackForCommand(command);
             const response: Response = controllerCallback(command);
             await message.reply(response);
-        });
+        } catch (e) {
+            console.log(e.message);
+        }
     }
 }
