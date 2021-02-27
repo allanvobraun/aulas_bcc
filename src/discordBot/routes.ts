@@ -1,6 +1,6 @@
 import {Router} from "src/discordBot/Router";
-import {batata} from "src/discordBot/controllers/testController";
+import ClassesController from "src/discordBot/controllers/ClassesController";
 
 export function registerRoutes(): void {
-    Router.make('ping', batata);
+    Router.make('ping', ClassesController.batata);
 }
