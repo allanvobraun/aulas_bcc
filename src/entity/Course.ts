@@ -8,7 +8,7 @@ export class Course {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column("char", { length: 50 })
+    @Column("varchar", { length: 50 })
     name: string;
 
     @ManyToMany(() => Teacher, teacher => teacher.courses)

@@ -39,7 +39,7 @@ export default class Kernel {
             const command: Command = this.resolveCommand(message);
 
             const controllerCallback: ControllerCallback = Router.getCallbackForCommand(command);
-            const response: Response = controllerCallback(command);
+            const response: Response = await controllerCallback(command);
             await message.reply(response);
         } catch (e) {
             console.log(e.message);

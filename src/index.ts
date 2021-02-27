@@ -2,7 +2,7 @@ import "reflect-metadata";
 import {createConnection} from "typeorm";
 import Kernel from "src/discordBot/Kernel";
 
-createConnection().then(async connection => {
-    const discordBotIndex: Kernel = Kernel.getInstance();
-    discordBotIndex.listen();
+createConnection().then(connection => {
+    const dicordBot: Kernel = Kernel.getInstance();
+    dicordBot.listen();
 }).catch(error => console.log(error));

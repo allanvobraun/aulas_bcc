@@ -1,6 +1,6 @@
 export default class ClassesController {
-    static batata() : Response {
+    static async batata(command: Command) : Promise<Response> {
         console.log("entrou na batata");
-        return "batataaaaaaaaaaaaaaa";
+        return '```json\n{"batata": "arroz"}\n```';
     }
 }
