@@ -1,5 +1,6 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from "typeorm";
+import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
 import {Course} from "./Course";
+import {weekdays} from "src/util/objects";
 
 export enum Days {
     SEGUNDA = 0,
@@ -32,4 +33,8 @@ export class Class {
         default: Days.SEGUNDA
     })
     day: Days;
+
+    get dia(): string {
+        return weekdays[this.day];
+    }
 }
