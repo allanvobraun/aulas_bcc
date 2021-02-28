@@ -11,7 +11,8 @@ export class Teacher {
     name: string;
 
     @ManyToMany(() => Course, course => course.teachers, {
-        cascade: true
+        cascade: true,
+        eager: true
     })
     courses: Course[];
 
