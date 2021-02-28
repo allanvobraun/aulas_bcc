@@ -1,4 +1,5 @@
 import {UnknownRouteError} from "src/discordBot/exceptions/UnknownRouteError";
+import {Command, ControllerCallback} from "src/types/discord";
 
 export class Router {
     private static routeFunctionRecord: Record<string, ControllerCallback> = {};

@@ -1,7 +1,9 @@
 import client from "src/discordBot/discordContext";
-import {Message} from "discord.js";
+import {Message, MessageOptions} from "discord.js";
 import {Router} from "src/discordBot/Router";
 import {registerRoutes} from "src/discordBot/routes";
+import Response from "src/discordBot/Response";
+import {Command, ControllerCallback} from "src/types/discord";
 
 export default class Kernel {
     private static instance: Kernel;
@@ -39,8 +41,9 @@ export default class Kernel {
             const command: Command = this.resolveCommand(message);
 
             const controllerCallback: ControllerCallback = Router.getCallbackForCommand(command);
-            const response: Response = await controllerCallback(command);
-            await message.reply(response);
+            const controllerResponse: Response = await controllerCallback(command);
+            const discordMessage: MessageOptions = controllerResponse.resolve();
+            await message.channel.send('', discordMessage);
         } catch (e) {
             console.log(e.message);
         }

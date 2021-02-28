@@ -13,8 +13,8 @@ export class Course {
 
     @ManyToMany(() => Teacher, teacher => teacher.courses)
     @JoinTable()
-    teachers: Teacher[];
+    teachers: Promise<Teacher[]>;
 
     @OneToMany(() => Class, _class => _class.course)
-    classes: Class[];
+    classes: Promise<Class[]>;
 }
