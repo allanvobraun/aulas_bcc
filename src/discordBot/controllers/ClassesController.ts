@@ -5,9 +5,15 @@ import {Command} from "src/types/discord";
 import Response from "src/discordBot/Response";
 
 export default class ClassesController {
-    static async index(command: Command) : Promise<Response> {
+    static async index(command: Command): Promise<Response> {
         const classRepository = getRepository(Class);
         const classes = await classRepository.find({relations: ['course', 'course.teachers']});
         return new ClassesResource(classes).resolve();
     }
+
+    // static async next(command: Command): Promise<Response> {
+    //     const classRepository = getRepository(Class);
+    //
+    //
+    // }
 }

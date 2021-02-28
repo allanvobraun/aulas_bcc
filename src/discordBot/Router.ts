@@ -1,15 +1,15 @@
 import {UnknownRouteError} from "src/discordBot/exceptions/UnknownRouteError";
-import {Command, ControllerCallback} from "src/types/discord";
+import {Command, Handler} from "src/types/discord";
 
 export class Router {
-    private static routeFunctionRecord: Record<string, ControllerCallback> = {};
+    private static routeFunctionRecord: Record<string, Handler> = {};
 
-    static make(endpoint: string, callback: ControllerCallback): void {
+    static make(endpoint: string, callback: Handler): void {
         this.routeFunctionRecord[endpoint] = callback;
     }
 
-    static getCallbackForCommand(command: Command): ControllerCallback {
-        const controllerCallback: ControllerCallback = Router.routeFunctionRecord[command.type];
+    static getHandlerForCommand(command: Command): Handler {
+        const controllerCallback: Handler = Router.routeFunctionRecord[command.type];
         if (controllerCallback) {
             return controllerCallback;
         }

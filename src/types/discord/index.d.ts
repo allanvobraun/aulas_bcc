@@ -4,4 +4,4 @@ interface Command {
     type: string;
     args: string[];
 }
-type ControllerCallback = (command: Command) => Promise<Response> | Response;
+type Handler = (command: Command) => Promise<Response> | Response;

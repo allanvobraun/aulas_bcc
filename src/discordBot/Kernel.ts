@@ -3,7 +3,7 @@ import {Message, MessageOptions} from "discord.js";
 import {Router} from "src/discordBot/Router";
 import {registerRoutes} from "src/discordBot/routes";
 import Response from "src/discordBot/Response";
-import {Command, ControllerCallback} from "src/types/discord";
+import {Command, Handler} from "src/types/discord";
 
 export default class Kernel {
     private static instance: Kernel;
@@ -34,14 +34,14 @@ export default class Kernel {
     }
 
     private async resolveClientMessages(message: Message): Promise<void> {
-        if (message.author.bot) return;
         if (!message.content.startsWith(this.commandPrefix)) return;
+        if (message.author.bot) return;
 
         try {
             const command: Command = this.resolveCommand(message);
 
-            const controllerCallback: ControllerCallback = Router.getCallbackForCommand(command);
-            const controllerResponse: Response = await controllerCallback(command);
+            const handler: Handler = Router.getHandlerForCommand(command);
+            const controllerResponse: Response = await handler(command);
             const discordMessage: MessageOptions = controllerResponse.resolve();
             await message.channel.send('', discordMessage);
         } catch (e) {
