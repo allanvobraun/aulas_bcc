@@ -1,9 +1,11 @@
 import Discord from 'discord.js';
-import dicordConfig from 'root/botConfig.json';
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const client = new Discord.Client();
-client.login(dicordConfig.BOT_TOKEN).then(() => {
-    console.log("Discord bot loged");
+client.login(process.env.BOT_TOKEN).then(() => {
+    console.log("Bot online!!!!!");
 });
 
 export default client;
