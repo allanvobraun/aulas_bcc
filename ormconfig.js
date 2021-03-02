@@ -1,5 +1,3 @@
-const entities = process.env.ENV_TYPE === 'dev' ? "src/entity/**/*.ts" : "build/entity/**/*.js";
-const migrations = process.env.ENV_TYPE === 'dev' ? "src/entity/**/*.ts" : "build/migration/**/*.js";
 
 module.exports = {
    "type": "postgres",
@@ -7,10 +5,16 @@ module.exports = {
    "synchronize": true,
    "logging": false,
    "entities": [
-      entities
+      "src/entity/**/*.ts"
    ],
+   "ssl": true,
+   "extra": {
+      "ssl": {
+         "rejectUnauthorized": false
+      }
+   },
    "migrations": [
-      migrations
+      "src/entity/**/*.ts"
    ],
    "subscribers": [
       "src/subscriber/**/*.ts"
