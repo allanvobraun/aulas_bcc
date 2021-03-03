@@ -6,9 +6,14 @@ import Response from "src/discordBot/Response";
 
 export default class ClassesController {
     static async index(command: Command): Promise<Response> {
-        if (command.args.includes('hoje')) {
-            return ClassesController.today(command);
+
+        switch (command.args[0]) {
+            case 'hoje':
+                return ClassesController.today(command);
+            case 'amanha':
+                return ClassesController.tomorrow(command);
         }
+
         const classRepository = getRepository(Class);
         const classes = await classRepository.find({
             relations: ['course', 'course.teachers'],
@@ -24,7 +29,21 @@ export default class ClassesController {
         const classRepository = getRepository(Class);
         const classes = await classRepository.find({
             relations: ['course', 'course.teachers'],
-            where: {day: (new Date()).getDay() -1},
+            where: {day: (new Date()).getDay() - 1},
+            order: {
+                startTime: 'ASC'
+            }
+        });
+
+        return new ClassesResource(classes).resolve();
+    }
+
+    // TODO refatorar para tirar essa repetição
+    static async tomorrow(command: Command): Promise<Response> {
+        const classRepository = getRepository(Class);
+        const classes = await classRepository.find({
+            relations: ['course', 'course.teachers'],
+            where: {day: (new Date()).getDay()},
             order: {
                 startTime: 'ASC'
             }

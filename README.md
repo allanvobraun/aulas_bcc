@@ -16,7 +16,7 @@ Comandos:
 ----
 | Comando | Descrição                                               | Como usar                 |
 |---------|-----------------------------------------------------------|-----------------------|
-| aulas   | Lista todas as aulas e seus horários                      | ??aulas ou ??aulas hoje |
+| aulas   | Lista todas as aulas e seus horários                      | ??aulas ou ??aulas hoje / amanha |
 | professores     | Lista todos os professores e a a sua respectiva matéria |  ??aulas  |
 | materias     | Lista todas as matérias e os respectivos professores|  ??materias  |
 | teste     | Mostra mensagem de teste |  ??teste  |
