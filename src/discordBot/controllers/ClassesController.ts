@@ -24,7 +24,7 @@ export default class ClassesController {
         const classRepository = getRepository(Class);
         const classes = await classRepository.find({
             relations: ['course', 'course.teachers'],
-            where: {day: (new Date()).getDay()},
+            where: {day: (new Date()).getDay() -1},
             order: {
                 startTime: 'ASC'
             }
