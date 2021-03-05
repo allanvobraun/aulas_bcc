@@ -11,4 +11,5 @@ export function registerRoutes(): void {
     Router.make('teste', SupportController.index);
     Router.make('sobre', SupportController.about);
     Router.make('comandos', SupportController.commands);
+    Router.make('help', SupportController.commands);
 }

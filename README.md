@@ -22,3 +22,4 @@ Comandos:
 | teste     | Mostra mensagem de teste |  ??teste  |
 | sobre     | Mostra insformações sobre o bot |  ??sobre  |
 | comandos     | Lista todos os comandos possíveis |  ??comandos  |
+| help     | O mesmo que ??comandos |  ??help  |
