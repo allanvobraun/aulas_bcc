@@ -1,15 +1,20 @@
 import {UnknownRouteError} from "src/discordBot/exceptions/UnknownRouteError";
 import {Command, Handler} from "src/types/discord";
+import ControllerActivator from "src/discordBot/ControllerActivator";
+import BaseController from "src/discordBot/controllers/BaseController";
 
-export class Router {
-    private static routeFunctionRecord: Record<string, Handler> = {};
+class Router {
+    private static routeControllerRecord: Record<string, ControllerActivator<any, any>> = {};
 
-    static make(endpoint: string, callback: Handler): void {
-        this.routeFunctionRecord[endpoint] = callback;
+    static make<Type extends BaseController, Key extends keyof Type>
+    (endpoint: string, controller: new () => Type, controllerMethod: Key): void {
+
+        this.routeControllerRecord[endpoint] = new ControllerActivator<Type, Key>(controller, controllerMethod);
     }
 
     static getHandlerForCommand(command: Command): Handler {
-        const controllerCallback: Handler = Router.routeFunctionRecord[command.type];
+        const controllerActivator = Router.routeControllerRecord[command.type];
+        const controllerCallback = controllerActivator.getControllerBindedMethod();
         if (controllerCallback) {
             return controllerCallback;
         }
@@ -17,3 +22,5 @@ export class Router {
         throw new UnknownRouteError(command.type);
     }
 }
+
+export default Router;

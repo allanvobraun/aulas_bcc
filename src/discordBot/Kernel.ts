@@ -1,6 +1,6 @@
 import client from "src/discordBot/discordContext";
 import {Message, MessageOptions} from "discord.js";
-import {Router} from "src/discordBot/Router";
+import Router from "src/discordBot/Router";
 import {registerRoutes} from "src/discordBot/routes";
 import Response from "src/discordBot/Response";
 import {Command, Handler} from "src/types/discord";
